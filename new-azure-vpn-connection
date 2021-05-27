@@ -1,0 +1,42 @@
+Get-AzResourceGroup
+Get-AzVirtualNetwork
+Get-AzLocalNetworkGateway -ResourceGroupName AD_Infrastructure
+
+
+
+
+# Create the VPN connection
+# https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell
+
+$gateway1 = Get-AzVirtualNetworkGateway -Name VNG_for_ADInf -ResourceGroupName AD_Infrastructure
+$local = Get-AzLocalNetworkGateway -Name USC_PAN -ResourceGroupName AD_Infrastructure
+$ipsecpolicy6 = New-AzureRmIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup DHGroup14 -IpsecEncryption AES256 -IpsecIntegrity SHA256 -PfsGroup None -SALifeTimeSeconds 14400 -SADataSizeKilobytes 102400000
+
+New-AzVirtualNetworkGatewayConnection -Name VNet1toUSC -ResourceGroupName AD_Infrastructure -Location 'West US' -VirtualNetworkGateway1 $gateway1 -LocalNetworkGateway2 $local -ConnectionType IPsec -IpsecPolicies $ipsecpolicy6  -SharedKey '#####' -EnableBgp $true
+
+
+
+# Verify the VPN connection
+
+Get-AzVirtualNetworkGatewayConnection -Name VNet1toUSC -ResourceGroupName AD_Infrastructure
+
+
+
+# Details
+# Internal networks
+# DC01 = 10.251.16.10
+# DC02 = 10.20.20.45
+ 
+# ASN 65007 (assigned to Azure VNG config)
+# Some public IP: 207.11.12.13 (assigned to PAN Local Network Gateway)
+# PSK : #####
+
+# Other side ASN  64901 (assigned to USC_PAN LNG)
+# 192.168.200.49 (BGP Peer IP address USC_PAN LNG)
+# 10.20.20.0/24 (address space)
+
+# phase1: aes-256, sha256, group14
+# phase2: aes-256, sha256, group14
+
+# connection details
+# BGP enabled, IKEv2
