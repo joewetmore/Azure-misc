@@ -1,0 +1,30 @@
+ #get module
+Get-Module -Name Microsoft.Online.SharePoint.PowerShell -ListAvailable | Select Name,Version
+
+#install module
+Install-Module -Name Microsoft.Online.SharePoint.PowerShell
+Install-Module MSOnline
+
+
+#login to SPO
+Connect-SPOService -Url https://mydomain-admin.sharepoint.com -Credential jwetmore@mydomain.com
+$Msolcred = Get-credential
+Connect-MsolService -Credential $MsolCred
+
+
+Get-Content -path ".\users.csv" | ForEach-Object { Set-MsolUser -UserPrincipalName $_ -BlockCredential $False }
+$users = Get-Content -path ".\users.csv"
+Request-SPOPersonalSite -UserEmails $users 
+
+
+
+
+#Users.csv
+talbert@mydomain.onmicrosoft.com
+rfornario@mydomain.onmicrosoft.com
+mcalagday@mydomain.onmicrosoft.com
+kwakefield@mydomain.onmicrosoft.com
+jdemma@mydomain.onmicrosoft.com
+jhenninge@mydomain.onmicrosoft.com
+dfornario@mydomain.onmicrosoft.com
+cpaul@mydomain.onmicrosoft.com
