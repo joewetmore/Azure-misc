@@ -11,10 +11,10 @@ $devices = Get-AzureADDevice | Where-Object {
 # Get all users
 $users = Get-AzureADUser | Select-Object ObjectId, UserPrincipalName
 
-foreach ($device in $devices) {ring(0, [Math]::Min(5, $device.DisplayName.Length))
-    
+foreach ($device in $devices) {
     # Extract the first five characters of the device name
-    $deviceNameFragment = $device.DisplayName.Subst
+    $deviceNameFragment = $device.DisplayName.Substring(0, [Math]::Min(5, $device.DisplayName.Length))
+    
     # Try to find a matching user
     $matchedUser = $users | Where-Object {
         $_.UserPrincipalName -match "^$deviceNameFragment"
