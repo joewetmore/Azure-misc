@@ -17,3 +17,6 @@ Invoke-SCuBA -ProductNames exo
 Invoke-SCuBA -ProductNames sharepoint
 Invoke-SCuBA -ProductNames teams
 Invoke-SCuBA -ProductNames powerplatform
+
+# Delete all tokens
+Disconnect-SCuBATenant
