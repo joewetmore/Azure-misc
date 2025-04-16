@@ -23,3 +23,7 @@ Disconnect-SCuBATenant
 
 # Upgrade your installed version
 Update-Module -Name ScubaGear
+
+# Uninstall & verify
+Uninstall-Module -Name ScubaGear
+Get-Module -Name ScubaGear -ListAvailabile
