@@ -20,4 +20,6 @@ Invoke-SCuBA -ProductNames powerplatform
 
 # Delete all tokens
 Disconnect-SCuBATenant
+
+# Upgrade your installed version
 Update-Module -Name ScubaGear
