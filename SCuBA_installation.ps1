@@ -20,3 +20,4 @@ Invoke-SCuBA -ProductNames powerplatform
 
 # Delete all tokens
 Disconnect-SCuBATenant
+Update-Module -Name ScubaGear
