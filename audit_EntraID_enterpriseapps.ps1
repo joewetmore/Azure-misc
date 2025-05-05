@@ -1,3 +1,6 @@
+# Connect to MS Graph
+Connect-MSGraph -scopes ("Application.Read.All")
+
 # Get all Service Principals (Enterprise applications)
 
 $servicePrincipals = Get-MgServicePrincipal -All
