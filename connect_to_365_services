@@ -1,0 +1,78 @@
+MSOnline
+https://docs.microsoft.com/en-us/powershell/azure/active-directory/install-msonlinev1?view=azureadps-1.0
+
+#install module
+Install-Module MSOnline
+
+#login
+$Msolcred = Get-credential
+Connect-MsolService -Credential $MsolCred
+
+#test
+Get-MsolUser
+
+
+Azure AD
+
+#install module
+Install-Module AzureAD
+
+#login
+Connect-AzureAD
+
+#test
+
+Exchange Online
+https://docs.microsoft.com/en-us/powershell/exchange/connect-to-exchange-online-powershell?view=exchange-ps
+
+#install module
+Import-Module ExchangeOnlineManagement
+
+#login
+Connect-ExchangeOnline -UserPrincipalName joew@mycompany.onmicrosoft.com
+
+#test
+
+
+
+
+Sharepoint Online
+https://docs.microsoft.com/en-us/powershell/sharepoint/sharepoint-online/connect-sharepoint-online
+
+#get module
+Get-Module -Name Microsoft.Online.SharePoint.PowerShell -ListAvailable | Select Name,Version
+
+#install module
+Install-Module -Name Microsoft.Online.SharePoint.PowerShell
+
+#login to SPO
+Connect-SPOService -Url https://apcisg-admin.sharepoint.com -Credential jwetmore@apcisg.com
+
+#login
+Connect-SPOService -Url https://contoso-admin.sharepoint.com -Credential admin@contoso.com
+#login with MFA
+Connect-SPOService -Url https://contoso-admin.sharepoint.com
+
+#test
+
+
+MS Teams
+
+Set-ExecutionPolicy Unrestricted
+
+Install-Module -Name PowerShellGet -Force -AllowClobber
+Install-Module -Name MicrosoftTeams -Force -AllowClobber
+Connect-MicrosoftTeams
+
+
+$voiceuser = Get-CsOnlineVoiceUser -Identity troy.parker@missionbell.com -ExpandLocation
+$voiceuser.location
+
+Get-CsOnlineVoiceUser
+
+Get-CsPhoneNumberAssignment
+
+Get-CsOnlineVoiceUser -id 8f36f7f4-0cf3-42a7-872b-5fb7b48557c1 -ExpandLocation
+
+
+
