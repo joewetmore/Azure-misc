@@ -1,3 +1,6 @@
+#Note: the MSOnline commands have been deprecated, and replaced with MSGraph. This no longer works. 6/30/25.
+
+
 #get module
 Get-Module -Name Microsoft.Online.SharePoint.PowerShell -ListAvailable | Select Name,Version
 
