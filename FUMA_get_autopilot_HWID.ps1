@@ -1,5 +1,7 @@
 # Check if NuGet provider is installed, install if not
 
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
+
 $nugetProvider = Get-PackageProvider -Name NuGet -ErrorAction SilentlyContinue
 
 if ($nugetProvider) {
@@ -18,11 +20,10 @@ if ($nugetProvider) {
 }
 
 
-# create an HWID for this machine and save on a fileserver
+# Create an HWID for this machine and save on a fileserver. Change the location to your fileshare
 
 set-location \\cthulhu\HWIDs
 $computerName = $env:COMPUTERNAME
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted -Force
 Install-Script -name Get-WindowsAutopilotInfo -force 
 $env:Path += ";C:\Program Files\WindowsPowerShell\Scripts"
 Get-WindowsAutopilotInfo.ps1 -OutputFile ${computerName}_AutopilotHWID.csv 
