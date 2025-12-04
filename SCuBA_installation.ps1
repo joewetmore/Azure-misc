@@ -1,5 +1,7 @@
-# Install ScubaGear
+# Install ScubaGear latest version
 Install-Module -Name ScubaGear
+# Install ScubaGear specific version
+Install-Module -Name ScubaGear -RequiredVersion 1.5.0 -force
 
 # Install the minimum required dependencies
 Initialize-SCuBA 
