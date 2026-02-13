@@ -8,6 +8,10 @@ Initialize-SCuBA
 
 # Check the version
 Invoke-SCuBA -Version
+# Verify
+Test-ScubaGearVersion
+# Fix dependencies
+Reset-ScubaGearDependencies
 
 # Assess all products
 Invoke-SCuBA -ProductNames *
